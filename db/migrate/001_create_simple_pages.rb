@@ -7,11 +7,11 @@ class CreateSimplePages < ActiveRecord::Migration
       t.column  :created_at,    :datetime
       t.column  :updated_at,    :datetime
     end
-    SimplePage.create_versioned_table
+    SimplePage.create_versioned_table if SimplePage.respond_to?(:create_versioned_table)
   end
 
   def self.down
     drop_table :simple_pages
-    SimplePage.drop_versioned_table
+    SimplePage.drop_versioned_table if SimplePage.respond_to?(:drop_versioned_table)
   end
 end

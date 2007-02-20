@@ -5,16 +5,16 @@ class SimplePagesController < ApplicationController
                                            :update,
                                            :destroy]
   before_filter :find_or_initialize, :except => :index
-  before_filter :set_title
+  before_filter :set_title, :except => :index
   
   def index
-    @pages = Page.find(:all)
+    @pages = SimplePage.find(:all)
   end
   
   # render show
   
   def edit
-    @page.revert_to(params[:version]) if params[:version] && @page.respond_to(:revert_to)
+    @page.revert_to(params[:version]) if params[:version] && @page.respond_to?(:revert_to)
   end
   
   def create
@@ -38,11 +38,11 @@ class SimplePagesController < ApplicationController
   protected
   
     def find_or_initialize
-      @page = params[:id] ? Page.find_by_filename(params[:id]) : Page.new
+      @page = params[:id] ? SimplePage.find_by_filename(params[:id]) : SimplePage.new
     end
     
     def set_title
-      @title = @page.title if @page.respond_to(:title)
+      @title = @page.title if @page.respond_to?(:title)
     end
     
     def rescue_action(exception)
