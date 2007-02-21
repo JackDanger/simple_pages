@@ -1,6 +1,6 @@
 puts IO.read(File.join(File.dirname(__FILE__), 'README'))
 
-p self
+return gets.chomp
 
 puts "Do you want to use version-control with your pages? (Recommended)"
 puts "[y/n]:"
