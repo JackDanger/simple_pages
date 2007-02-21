@@ -6,3 +6,4 @@ Allows your app to have a controller full of generic html pages that are served 
 Rather than mix traditional flat-file pages into a Rails app or attempt to create
 whole controllers just for a single rhtml view you can now manage pages that act like flat-files
 but are editable via a web browser.
+
