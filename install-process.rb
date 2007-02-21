@@ -1,7 +1,7 @@
 puts IO.read(File.join(File.dirname(__FILE__), 'README'))
 
 p __FILE__
-#Kernel.gets
+p Kernel.gets
 
 puts "Do you want to use version-control with your pages? (Recommended)"
 puts "[y/n]:"
