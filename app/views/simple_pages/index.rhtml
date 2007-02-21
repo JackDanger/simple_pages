@@ -1,0 +1,7 @@
+<%= link_to 'Create a new page', simple_new_page_path if can_manage_pages? %>
+
+<%  @simple_pages.each do |p| %>
+  <div id="page_<%= p.to_param %>" class="simple_page_link">
+    <%= render :partial => 'simple_page', :object => p %>
+  </div>
+<%  end %>

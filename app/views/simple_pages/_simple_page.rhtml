@@ -1,0 +1,9 @@
+<%  p = simple_page %>
+
+<%= link_to 'Edit', simple_edit_page_path(p) if can_manage_pages? %>
+<%= link_to 'Delete', simple_page_path(p), :method => 'delete' if can_manage_pages? %>
+
+<span class="simple_page_title">
+  <%= link_to p.title, simple_page_path(p) %>
+</span>
+<span class="simple_page_filename">(<%= p.filename %>)</span>

@@ -9,7 +9,6 @@ class SimplePage < ActiveRecord::Base
   validates_uniqueness_of :filename, :title
   
   before_save :fix_filename
-  before_save :process_content
   
   # Page#to_param is used to fill the :id portion of the request.  This gives us pretty urls.
   def to_param
