@@ -46,7 +46,12 @@ class SimplePagesController < ApplicationController
     helper_method :can_manage_pages?
   
     def find_or_initialize
-      @simple_page = params[:id] ? SimplePage.find_by_filename(params[:id]) : SimplePage.new
+      if params[:id]
+        @simple_page = SimplePage.find_by_filename(params[:id])
+        raise ActiveRecord::RecordNotFound unless @simple_page
+      else
+        @simple_page = SimplePage.new
+      end
     end
     
     def set_title
@@ -55,7 +60,10 @@ class SimplePagesController < ApplicationController
     
     
     # some super-handy controller code stolen from techno-weenie
-    def rescue_action(exception)
+    # if you're in production mode this will route invalid models
+    # to their corresponding form and spit out a little 404 error 
+    # if a record could not be found
+    def rescue_action_in_public(exception)
       case exception.class.name
       when 'ActiveRecord::RecordInvalid'
         render_invalid_record(exception.record)
