@@ -10,7 +10,7 @@ end
 unless File.exists?("#{RAILS_ROOT}/vendor/plugins/engines")
   puts "WARNING: you do not have the engines plugin installed.  This is a necessary requirement for the simple_pages plugin to work."
   puts "Please install the engines plugin by running the following command in your shell:"
-  puts "    ruby #{RAILS_ROOT}/script/plugin install -x http://svn.rails-engines.org/plugins/engines"
+  puts "    ruby #{RAILS_ROOT}/script/plugin install -x http://svn.rails-engines.org/engines/tags/rel_1.2.0/"
   puts ''
 end
 
