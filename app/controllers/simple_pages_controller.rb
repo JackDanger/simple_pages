@@ -63,7 +63,7 @@ class SimplePagesController < ApplicationController
     # if you're in production mode this will route invalid models
     # to their corresponding form and spit out a little 404 error 
     # if a record could not be found
-    def rescue_action_in_public(exception)
+    def rescue_action(exception)
       case exception.class.name
       when 'ActiveRecord::RecordInvalid'
         render_invalid_record(exception.record)
@@ -81,7 +81,12 @@ class SimplePagesController < ApplicationController
     end
     
     def render_404
-      render :text => "<h1>Whoops!  That's a bad link.</h1>", :layout => true, :status => "404 Not Found"
+      if can_manage_pages?
+        @simple_page = SimplePage.new(:filename => params[:id], :title => params[:id].camelcase)
+        render :action => 'new'
+      else
+        render :text => "<h1>Whoops!  That's a bad link.</h1>", :layout => true, :status => "404 Not Found"
+      end
     end
 
 end
