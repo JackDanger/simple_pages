@@ -72,6 +72,9 @@ class SimplePagesController < ApplicationController
            'ActiveRecord::RecordNotFound'
         render_404
       else
+        if exception.message =~ /undefined local variable or method `simple[_a-z]*_page_path'/
+          render :text => "You must install this plugin's routes!  Add the line 'map.from_plugin :simple_pages' to your config/routes.rb", :layout => true and return
+        end
         super
       end
     end
