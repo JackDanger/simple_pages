@@ -53,6 +53,8 @@ class SimplePagesController < ApplicationController
       @title = @simple_page.title if @simple_page.respond_to?(:title)
     end
     
+    
+    # some super-handy controller code stolen from techno-weenie
     def rescue_action(exception)
       case exception.class.name
       when 'ActiveRecord::RecordInvalid'
