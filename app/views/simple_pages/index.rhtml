@@ -3,8 +3,8 @@
 <ul id="simple_pages">
 <%  @simple_pages.each do |p| %>
   <li id="page_<%= p.to_param %>" class="simple_page">
-    <%= link_to 'Edit', simple_edit_page_path(p) if can_manage_pages? %>
-    <%= link_to 'Delete', simple_page_path(p), :method => 'delete' if can_manage_pages? %>
+    <%= link_to image_tag('page_edit.png', :plugin => :simple_pages), simple_edit_page_path(p) if can_manage_pages? %>
+    <%= link_to image_tag('page_delete.png', :plugin => :simple_pages), simple_page_path(p), :method => 'delete' if can_manage_pages? %>
     <span class="simple_page_title">
       <%= link_to p.title, simple_page_path(p) %>
     </span>

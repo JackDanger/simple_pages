@@ -8,6 +8,4 @@
   
   </form>
 
-<%  @simple_page.versions.reverse.each do |v| %>
-  <%= render :partial => 'simple_page_version', :object => v %> <br />
-<%  end if @simple_page.respond_to?(:versions)  %>
+<%= render :partial => 'simple_page_version', :collection => @simple_page.versions.reverse if @simple_page.respond_to?(:versions)  %>
