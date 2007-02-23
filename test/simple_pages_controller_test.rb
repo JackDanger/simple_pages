@@ -31,6 +31,13 @@ class SimplePagesControllerTest < Test::Unit::TestCase
     assert assigns(:simple_page).new_record?
   end
   
+  def test_edit
+    test_create # put something in the db again
+    get :edit, :id => 'test_create'
+    assert_response :success
+    assert !assigns(:simple_page).new_record?
+  end
+  
   def test_show
     sp = SimplePage.create(:filename => 'test_show', :title => 'Test Show', :content => '<h1>Content!</h1>')
     get :show, :id => 'test_show'
