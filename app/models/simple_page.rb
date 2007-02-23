@@ -17,7 +17,7 @@ class SimplePage < ActiveRecord::Base
 
   # make lowercase and underscored
   def fix_filename
-    self.filename = filename.downcase.gsub(' ', '_')
+    self.filename = filename.downcase.gsub(' ', '-')
   end
   
 end
