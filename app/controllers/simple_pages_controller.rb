@@ -7,6 +7,10 @@ class SimplePagesController < ApplicationController
   before_filter :find_or_initialize, :except => :index
   before_filter :set_title, :except => :index
   
+  caches_page :index, :show, :new
+  before_filter Proc.new {|c| c.expire_page :action => :index }, :only => [:create, :update, :destroy]
+  before_filter Proc.new {|c| c.expire_page :action => :show, :id => @simple_page }, :only => [:update, :destroy]
+  
   def index
     @simple_pages = SimplePage.find(:all)
   end
